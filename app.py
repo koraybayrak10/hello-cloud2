@@ -28,13 +28,13 @@ HTML = """
     <p> Adını Yaz, selamını bırak👇</p>
     <form method= "POST">
         <input type="text" name="isim" placeholder="Adını Yaz" required>
-        <button type="submit">Gönder</button<
+        <button type="submit">Gönder</button>
     </form>
     <h3>Ziyaretçiler:</h3>
     <ul>
         {% for ad in isimler%}
              <li>{{ ad }}</li>
-        {%enfor%}
+        {%endfor%}
     </ul>
 </body>    
 </html>
@@ -53,7 +53,7 @@ def index():
    if request.method == "POST":
       isim = request.form.get("isim")
       if isim:
-         cur.execute("INSERT INTO ziyaretciler (isim VALUES (%s)", (isim,))
+         cur.execute("INSERT INTO ziyaretciler (isim) VALUES (%s)", (isim,))
          conn.commit()
         
 cur.execute("SELECT isim FROM ziyaretciler ORDER BY id DESC LIMIT 10")
